@@ -5,11 +5,14 @@
 package HCUtil;
 
 use strict;
-
+use Config::Simple;
 use base qw(HTTP::Server::Simple::CGI);
 use HTTP::Server::Simple::Static;
 
-my $server = HCUtil->new(1337);
+my $cfg = new Config::Simple('HCUtil.conf');
+my $port = $cfg->param('port');
+
+my $server = HCUtil->new($port);
 $server->run();
 
 die 'HCUtil server has returned and is no longer running';

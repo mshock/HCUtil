@@ -6,10 +6,15 @@
 use strict;
 use Getopt::Long;
 use IO::Handle;
+use Config::Simple;
 use constant REGEX_TRUE => qr/^\s*(?:true|(?:t)|(?:y)|yes|(?:1))\s*$/i;
 
 open ERROR, '>>', 'errors.log';
 STDERR->fdopen( \*ERROR, 'a' ) or warn "failed to pipe errors to logfile\n";
+
+my $cfg = new Config::Simple('HCUtil.conf');
+my $page_name = $cfg->param('page_name');
+my $header_name = $cfg->param('header_name');
 
 my ( $encode, $decode, $show_commented, $submitted, $strict );
 GetOptions( 'encode:s'    => \$encode,
@@ -126,8 +131,8 @@ sub print_header {
 	print "
 	<html>
 	<head>
-		<title>The Lizak HCUtil</title>
-		<link rel='stylesheet' type='text/css' href='styles.css' />
+		<title>The $page_name HCUtil</title>
+		<link type='text/css' rel='stylesheet' href='styles.css' />
 	</head>
 	<body>
 	
@@ -135,7 +140,7 @@ sub print_header {
 			<tr>
 				<td>
 				<h3>
-					<a href='http://slider.qai.qaisoftware.com:1337/' class='home'>Chuck's Header Code Encoder/Decoder Utility</a>	
+					<a href='http://slider.qai.qaisoftware.com:1337/' class='home'>$header_name Header Code Encoder/Decoder Utility</a>	
 				</h3>
 				</td>
 			</tr>
