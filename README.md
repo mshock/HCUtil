@@ -28,3 +28,9 @@ TODO
 [1]: http://search.cpan.org/~jesse/HTTP-Server-Simple-0.44/lib/HTTP/Server/Simple.pm	"HTTP::Server::Simple"
 [2]: http://search.cpan.org/~sherzodr/Config-Simple-4.59/Simple.pm "Config::Simple"
 [3]: http://www.quotedb.com/	"QuoteDB"
+
+Copyright (C) 2013, Matt Shockley
+
+This code is free software; you
+can redistribute it and/or modify it under the same terms
+as Perl.
