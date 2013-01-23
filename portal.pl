@@ -15,6 +15,7 @@ STDERR->fdopen( \*ERROR, 'a' ) or warn "failed to pipe errors to logfile\n";
 my $cfg = new Config::Simple('HCUtil.conf');
 my $page_name = $cfg->param('page_name');
 my $header_name = $cfg->param('header_name');
+my $header_file = $cfg->param('hfile');
 
 my ( $encode, $decode, $show_commented, $submitted, $strict );
 GetOptions( 'encode:s'    => \$encode,
@@ -36,9 +37,8 @@ print_form();
 print_footer();
 
 sub load_updt {
-	my $updt_file = 'updtcode.h';
-	return unless ( -f $updt_file );
-	open( my $fh, '<', $updt_file )
+	return unless ( -f $header_file );
+	open( my $fh, '<', $header_file )
 		or return;
 	my @file = <$fh>;
 	close $fh;
